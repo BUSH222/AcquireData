@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Spinner
+        android:id="@+id/spinner_num"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/lastscantime"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center"
+        android:text="Waiting for Scan..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_num" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="200dp"
+        android:text="START"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastscantime" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="80dp"
+        android:text="STOP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastscantime" />
+
+    <TextView
+        android:id="@+id/isScanOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="138dp"
+        android:text="SCAN IS OFF!!"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastscantime" />
+
+    <TextView
+        android:id="@+id/ServerResponse"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:gravity="center"
+        android:text="Server response: -"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isScanOn" />
+
+    <EditText
+        android:id="@+id/ipinput"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="ip (eg 0.0.0.0)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_num" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
