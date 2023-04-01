@@ -28,6 +28,7 @@
         android:layout_marginEnd="50dp"
         android:gravity="center"
         android:text="Waiting for Scan..."
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_num" />
@@ -60,25 +61,13 @@
         android:layout_marginTop="43dp"
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="138dp"
-        android:text="SCAN IS OFF!!"
         android:gravity="center"
+        android:text="SCAN IS OFF!!"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastscantime" />
-
-    <TextView
-        android:id="@+id/ServerResponse"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:gravity="center"
-        android:text="Server response: -"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isScanOn" />
 
     <EditText
         android:id="@+id/ipinput"
@@ -90,6 +79,20 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="ip (eg 0.0.0.0)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_num" />
+
+    <EditText
+        android:id="@+id/FName"
+        android:layout_width="314dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:hint="File name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_num" />
