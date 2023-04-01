@@ -28,6 +28,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONObject;
 
 
@@ -73,12 +75,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
         public void run() {
             try {
                 EditText medit = (EditText)findViewById(R.id.ipinput);
+                EditText fnameet = (EditText)findViewById(R.id.FName);
                 URL url = new URL("http://" + medit.getText().toString() + "/testdata");
                 HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setRequestMethod("POST");
                 httpConn.setRequestProperty("Content-Type", "application/json");
                 Spinner mySpinner = (Spinner) findViewById(R.id.spinner_num);
                 BSSIDS.put("NUM", mySpinner.getSelectedItem().toString());
+                BSSIDS.put("FNAME", fnameet.getText().toString());
                 JSONObject BSSIDS_TO_JSON = new JSONObject(BSSIDS);
                 httpConn.setDoOutput(true);
                 OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
@@ -94,13 +98,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 System.out.println(response);
                 wifis.clear();
                 BSSIDS.clear();
-                TextView serverresponse = findViewById(R.id.ServerResponse);
-                serverresponse.setText("Server response: Success!");
+                runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show());
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("ERROR", "REQUEST ERROR");
-                TextView serverresponse = findViewById(R.id.ServerResponse);
-                serverresponse.setText("Server response: Request Failure");
+                runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Failure!", Toast.LENGTH_SHORT).show());
             }
 
         }
@@ -112,25 +114,32 @@ public class MainActivity extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.button: {
                 TextView scanstartedtext = findViewById(R.id.isScanOn);
-                scanstartedtext.setText("SCAN IS ON!!");
-                TextView serverresponse = findViewById(R.id.ServerResponse);
-                serverresponse.setText("Server response: -");
-                isScanON = Boolean.TRUE;
-                wifiManager.startScan();
 
-
+                EditText ipEmpC = (EditText) findViewById(R.id.FName);
+                EditText fNameEmpC = (EditText) findViewById(R.id.ipinput);
+                if ((fNameEmpC.getText().toString().matches("") || (ipEmpC.getText().toString().matches("")))) {
+                    Toast.makeText(getApplicationContext(), "The file name or ip edit field is empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    scanstartedtext.setText("SCAN IS ON!!");
+                    isScanON = Boolean.TRUE;
+                    wifiManager.startScan();
+                }
                 break;
             }
 
             case R.id.button2: {
                 Log.i("HULLO", "scan stopped");
-                TextView serverresponse = findViewById(R.id.ServerResponse);
-                serverresponse.setText("Server response: Awaiting...");
+                Toast.makeText(getApplicationContext(), "Awaiting!", Toast.LENGTH_SHORT).show();
                 TextView scanstartedtext = findViewById(R.id.isScanOn);
                 scanstartedtext.setText("SCAN IS OFF!!");
                 isScanON = Boolean.FALSE;
-                System.out.println(BSSIDS);
-                new Thread(DoRequest).start();
+                EditText ipEmpC = (EditText) findViewById(R.id.FName);
+                EditText fNameEmpC = (EditText) findViewById(R.id.ipinput);
+                if ((fNameEmpC.getText().toString().matches("") || (ipEmpC.getText().toString().matches("")))) {
+                    Toast.makeText(getApplicationContext(), "The file name or ip edit field is empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    new Thread(DoRequest).start();
+                }
                 break;
             }
 
